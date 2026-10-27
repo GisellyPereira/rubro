@@ -183,6 +183,58 @@ function initHero() {
     video.load();
   }
 
+  // Sequência de quadros: a personagem virando a cabeça (esquerda -> direita)
+  const seq = $('[data-seq]');
+  const total = parseInt(seq.dataset.frames, 10);
+  const frames = new Array(total);
+  let loaded = 0;
+  let hasSeq = false;
+  let lastFrame = -1;
+  const sctx = seq.getContext('2d');
+  const loadFrames = () => {
+    // carrega primeiro quadros espaçados (já dá pra virar) e depois preenche o resto
+    const order = [];
+    for (let step = 8; step >= 1; step = Math.floor(step / 2)) {
+      for (let i = 0; i < total; i += step) if (!order.includes(i)) order.push(i);
+      if (step === 1) break;
+    }
+    if (!order.includes(total - 1)) order.push(total - 1);
+    let idx = 0;
+    const next = () => {
+      if (idx >= order.length) return;
+      const i = order[idx++];
+      const img = new Image();
+      img.decoding = 'async';
+      img.onload = () => {
+        frames[i] = img;
+        loaded++;
+        if (!hasSeq && frames[0] && frames[total - 1] && loaded >= Math.ceil(total / 8)) {
+          hasSeq = true;
+          hero.classList.add('has-seq');
+        }
+        next();
+      };
+      img.onerror = next;
+      img.src = `/img/turn/${String(i).padStart(3, '0')}.webp`;
+    };
+    for (let k = 0; k < 4; k++) next();
+  };
+  const nearestLoaded = (i) => {
+    for (let d = 0; d < total; d++) {
+      if (frames[i - d]) return i - d;
+      if (frames[i + d]) return i + d;
+    }
+    return -1;
+  };
+  const drawFrame = (i) => {
+    const j = nearestLoaded(i);
+    if (j < 0 || j === lastFrame) return;
+    lastFrame = j;
+    sctx.clearRect(0, 0, seq.width, seq.height);
+    sctx.drawImage(frames[j], 0, 0, seq.width, seq.height);
+  };
+  if (!reduced) loadFrames();
+
   new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; }).observe(hero);
 
   // Toque: arrastar no hero move o personagem
@@ -244,6 +296,10 @@ function initHero() {
         video.currentTime = t;
       }
       stage.style.transform = `translateX(calc(-50% + ${dx * 18}px))`;
+    } else if (hasSeq) {
+      // Cursor à esquerda = ela olha pra esquerda; à direita = olha pra direita
+      drawFrame(Math.round(clamp(cur.x, 0, 1) * (total - 1)));
+      seq.style.transform = `rotateX(${-dy * 4}deg) translate3d(${dx * 10}px, ${dy * 6}px, 0)`;
     } else if (!reduced) {
       char.style.transform = `rotateY(${dx * 22}deg) rotateX(${-dy * 8}deg) translate3d(${dx * 26}px, ${dy * 10}px, 0)`;
     }
