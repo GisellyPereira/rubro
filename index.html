@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Rubro Studio — Personagens que olham de volta</title>
+  <meta name="description" content="Estúdio de personagens 3D e sites interativos. Mascotes que seguem o cursor, reagem ao scroll e fazem sua marca ser lembrada." />
+  <meta name="theme-color" content="#D01A04" />
+  <meta property="og:title" content="Rubro Studio — Personagens que olham de volta" />
+  <meta property="og:description" content="Personagens 3D e sites interativos que fazem as pessoas pararem, sorrirem e lembrarem da sua marca." />
+  <meta property="og:image" content="/img/hero.webp" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23D01A04'/><text x='32' y='45' font-family='Arial Black,Arial' font-size='36' font-weight='900' fill='white' text-anchor='middle'>R</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="/img/hero-cut.webp" />
+</head>
+<body class="is-loading">
+  <!-- Preloader -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__logo">RUBRO®</span>
+      <span class="loader__count"><span data-count>0</span>%</span>
+    </div>
+    <div class="loader__bar"><span></span></div>
+  </div>
+
+  <!-- Cursor customizado -->
+  <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a href="#top" class="nav__logo" aria-label="Rubro Studio, início">RUBRO®</a>
+    <nav class="nav__menu" aria-label="Principal">
+      <a href="#estudio" class="link-roll"><span data-text="Estúdio">Estúdio</span></a>
+      <a href="#servicos" class="link-roll"><span data-text="Serviços">Serviços</span></a>
+      <a href="#trabalhos" class="link-roll"><span data-text="Trabalhos">Trabalhos</span></a>
+      <a href="#contato" class="link-roll"><span data-text="Contato">Contato</span></a>
+    </nav>
+    <a href="#contato" class="btn btn--outline nav__cta" data-magnetic>Vamos conversar</a>
+    <button class="nav__burger" aria-label="Abrir menu" aria-expanded="false"><i></i><i></i></button>
+  </header>
+
+  <div class="mobile-menu" aria-hidden="true">
+    <a href="#estudio">Estúdio</a><a href="#servicos">Serviços</a><a href="#trabalhos">Trabalhos</a><a href="#contato">Contato</a>
+  </div>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" data-hero>
+      <canvas class="hero__field" aria-hidden="true"></canvas>
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__ghost" aria-hidden="true">RUBRO</div>
+
+      <div class="hero__stage" data-stage>
+        <div class="hero__shadow" aria-hidden="true"></div>
+        <img class="hero__char" src="/img/hero-cut.webp" alt="Personagem 3D da Rubro: garota de cabelo chanel, óculos redondos e moletom mostarda" width="488" height="685" data-char />
+        <video class="hero__video" muted playsinline preload="auto" aria-hidden="true" data-video></video>
+      </div>
+
+      <p class="hero__hint"><span class="hero__hint-dot"></span><span data-hint>Mexa o mouse</span></p>
+      <div class="hero__badge" aria-hidden="true">
+        <svg viewBox="0 0 200 200"><defs><path id="circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" /></defs>
+          <text><textPath href="#circle">ESTÚDIO DE PERSONAGENS 3D · DESDE 2019 · </textPath></text></svg>
+        <span>✺</span>
+      </div>
+
+      <h1 class="hero__title" data-split>Personagens<br />que olham<br />de volta.</h1>
+      <div class="hero__side">
+        <p data-fade>Criamos mascotes, personagens e sites interativos que fazem as pessoas pararem, sorrirem e lembrarem da sua marca.</p>
+        <a href="#trabalhos" class="btn btn--white" data-magnetic data-fade>Ver trabalhos <span class="arrow">→</span></a>
+      </div>
+      <button class="gyro-btn" hidden>Ativar movimento</button>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-label="Personagens 3D, sites interativos, motion, mascotes, branding">
+      <div class="marquee__track" data-marquee>
+        <div class="marquee__group"><span>Personagens 3D</span><i>✺</i><span>Sites interativos</span><i>✺</i><span>Motion</span><i>✺</i><span>Mascotes</span><i>✺</i><span>Branding</span><i>✺</i></div>
+        <div class="marquee__group" aria-hidden="true"><span>Personagens 3D</span><i>✺</i><span>Sites interativos</span><i>✺</i><span>Motion</span><i>✺</i><span>Mascotes</span><i>✺</i><span>Branding</span><i>✺</i></div>
+      </div>
+    </div>
+
+    <!-- SOBRE -->
+    <section class="about" id="estudio">
+      <p class="label">(01) O estúdio</p>
+      <p class="about__text" data-words>A gente acredita que marca boa tem <em>cara, olhar e personalidade</em>. Por isso damos vida a ela — literalmente.</p>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section class="services" id="servicos">
+      <div class="sec-head">
+        <h2 class="sec-title" data-split>Serviços</h2>
+        <p data-fade>Do primeiro rascunho do personagem até o site no ar, com animação que reage a quem visita.</p>
+      </div>
+      <div class="cards">
+        <article class="card card--red" data-tilt data-reveal>
+          <span class="card__num">01</span>
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><circle cx="32" cy="26" r="16"/><circle cx="26" cy="24" r="3" class="fill"/><circle cx="38" cy="24" r="3" class="fill"/><path d="M24 32c4 4 12 4 16 0"/><path d="M14 58c2-10 10-16 18-16s16 6 18 16"/></svg>
+          </div>
+          <div><h3>Criação de personagem</h3><p>Conceito, expressões e versões 3D do mascote da sua marca.</p></div>
+        </article>
+        <article class="card card--ink" data-tilt data-reveal>
+          <span class="card__num">02</span>
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><rect x="6" y="10" width="52" height="38" rx="6"/><path d="M6 20h52"/><path d="M30 34l8 14 3-6 6-2z" class="fill"/></svg>
+          </div>
+          <div><h3>Sites interativos</h3><p>Landing pages com personagens que seguem o cursor e reagem ao scroll.</p></div>
+        </article>
+        <article class="card card--light" data-tilt data-reveal>
+          <span class="card__num">03</span>
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><rect x="6" y="14" width="52" height="36" rx="6"/><path d="M27 24v16l13-8z" class="fill"/></svg>
+          </div>
+          <div><h3>Motion &amp; vídeo</h3><p>Animações curtas para redes sociais, anúncios e lançamentos.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TRABALHOS -->
+    <section class="work" id="trabalhos">
+      <div class="sec-head">
+        <h2 class="sec-title" data-split>Trabalhos</h2>
+        <p data-fade>Alguns personagens que já ganharam vida por aqui.</p>
+      </div>
+      <div class="grid">
+        <a href="#contato" class="tile" style="--bg:#DA210B" data-cursor="Ver projeto" data-reveal>
+          <div class="tile__media"><img src="/img/pimenta.webp" alt="Mascote 3D Pimenta Café: pimenta sorridente segurando uma xícara de café" loading="lazy" /></div>
+          <div class="tile__meta"><h3>Pimenta Café</h3><span>Mascote · Site</span></div>
+        </a>
+        <a href="#contato" class="tile" style="--bg:#214BF9" data-cursor="Ver projeto" data-reveal>
+          <div class="tile__media"><img src="/img/nuvem.webp" alt="Mascote 3D Nuvem Bank: nuvem fofa segurando uma moeda dourada" loading="lazy" /></div>
+          <div class="tile__meta"><h3>Nuvem Bank</h3><span>Personagem 3D</span></div>
+        </a>
+        <a href="#contato" class="tile tile--dark" style="--bg:#DCA111" data-cursor="Ver projeto" data-reveal>
+          <div class="tile__media"><img src="/img/girassol.webp" alt="Mascote 3D Girassol Kids: girassol acenando com as folhas" loading="lazy" /></div>
+          <div class="tile__meta"><h3>Girassol Kids</h3><span>Motion · Branding</span></div>
+        </a>
+        <a href="#contato" class="tile" style="--bg:#187E53" data-cursor="Ver projeto" data-reveal>
+          <div class="tile__media"><img src="/img/folha.webp" alt="Mascote 3D Folha Verde: folha sorridente com regador" loading="lazy" /></div>
+          <div class="tile__meta"><h3>Folha Verde</h3><span>Site interativo</span></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- PROCESSO -->
+    <section class="process">
+      <div class="sec-head">
+        <h2 class="sec-title" data-split>Como funciona</h2>
+        <p data-fade>Quatro etapas, prazos claros e você acompanhando tudo.</p>
+      </div>
+      <div class="steps" data-steps>
+        <span class="steps__line" aria-hidden="true"></span>
+        <div class="step"><span class="step__n">01</span><h3>Imersão</h3><p>Entendemos sua marca, seu público e o tom que o personagem precisa ter.</p></div>
+        <div class="step"><span class="step__n">02</span><h3>Personagem</h3><p>Esboços, expressões e a versão final em 3D aprovada por você.</p></div>
+        <div class="step"><span class="step__n">03</span><h3>Animação</h3><p>Geramos os movimentos que vão reagir ao cursor, ao toque e ao scroll.</p></div>
+        <div class="step"><span class="step__n">04</span><h3>Site no ar</h3><p>Desenvolvemos, testamos no celular e publicamos.</p></div>
+      </div>
+    </section>
+
+    <!-- PROVA -->
+    <section class="proof">
+      <div class="stats">
+        <div class="stat" data-reveal><b><span data-counter="120">0</span>+</b><span>personagens criados</span></div>
+        <div class="stat" data-reveal><b><span data-counter="3.4" data-decimals="1">0</span>×</b><span>mais tempo na página, em média</span></div>
+        <div class="stat" data-reveal><b><span data-counter="48">0</span></b><span>marcas atendidas</span></div>
+      </div>
+      <figure class="quote" data-reveal>
+        <blockquote data-words>“Os clientes passam mais tempo brincando com o nosso mascote do que lendo o cardápio.”</blockquote>
+        <figcaption class="who"><img src="/img/rafael.webp" alt="" width="64" height="64" loading="lazy" /><div><b>Rafael Monteiro</b><span>Fundador · Pimenta Café</span></div></figcaption>
+      </figure>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contato">
+      <div class="eyes" aria-hidden="true"><div class="eye"><i></i></div><div class="eye"><i></i></div></div>
+      <h2 class="cta__title" data-split>Bora dar vida<br />à sua marca?</h2>
+      <p data-fade>Conta pra gente sua ideia. Respondemos em até 24 horas com os próximos passos.</p>
+      <div class="cta__row" data-fade>
+        <a href="mailto:ola@rubro.studio" class="btn btn--white" data-magnetic>Começar projeto <span class="arrow">→</span></a>
+        <a href="mailto:ola@rubro.studio" class="btn btn--outline" data-magnetic>ola@rubro.studio</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__logo" data-footer-logo><span>R</span><span>U</span><span>B</span><span>R</span><span>O</span><span>®</span></div>
+      <div class="footer__cols">
+        <div><b>Menu</b><a href="#estudio">Estúdio</a><a href="#servicos">Serviços</a><a href="#trabalhos">Trabalhos</a><a href="#contato">Contato</a></div>
+        <div><b>Social</b><a href="#" rel="noopener">Instagram</a><a href="#" rel="noopener">Behance</a><a href="#" rel="noopener">LinkedIn</a></div>
+        <div><b>Contato</b><a href="mailto:ola@rubro.studio">ola@rubro.studio</a><span>Fortaleza, CE</span></div>
+      </div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 Rubro Studio — marca fictícia</span><span>Feito com personagens que olham de volta</span></div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
