@@ -300,16 +300,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .nav__menu, .nav__cta { display: none; }
   .nav__burger { display: flex; }
   .hero { height: 100svh; min-height: 720px; }
-  .hero__stage { width: auto; height: 54%; bottom: auto; top: 72px; }
-  .hero__shadow { display: none; }
-  .hero__badge { width: 96px; height: 96px; top: 84px; }
-  .hero__badge text { font-size: 15px; }
-  .hero__badge span { font-size: 20px; }
+  .hero__stage { width: auto; height: 44svh; bottom: auto; top: 76px; }
+  .hero__badge { display: none; }
   .hero__hint { top: 88px; font-size: 11px; }
-  .hero__title { bottom: auto; top: calc(72px + 54% - 1px); font-size: clamp(54px, 15vw, 84px); left: 20px; right: 20px; }
-  .hero__side { left: 20px; right: 20px; width: auto; bottom: 28px; gap: 16px; }
+  .hero__title { bottom: auto; top: calc(76px + 44svh); font-size: clamp(46px, 13vw, 76px); left: 20px; right: 20px; }
+  .hero__side { left: 20px; right: 20px; width: auto; bottom: 24px; gap: 16px; }
   .hero__side p { font-size: 15px; }
   .hero__side .btn { width: 100%; justify-content: center; }
+  .gyro-btn { top: auto; bottom: auto; top: calc(76px + 44svh - 52px); }
   .hero__ghost { top: 36%; }
   .marquee { height: 64px; }
   .marquee span { font-size: 28px; }
