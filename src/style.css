@@ -96,8 +96,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: 88px; padding: 0 var(--pad);
   display: flex; align-items: center; justify-content: space-between; color: var(--white);
-  mix-blend-mode: difference;
+  transition: color 0.4s var(--ease);
 }
+.nav--dark { color: var(--ink); }
+.nav--dark .nav__burger { border-color: var(--ink); }
+.nav--dark .nav__burger i { background: var(--ink); }
+.nav--dark .btn--outline::before { background: var(--ink); }
+.nav--dark .btn--outline:hover { color: var(--cream); }
+.nav.is-menu { color: var(--cream); }
+.nav.is-menu .nav__burger { border-color: var(--cream); }
+.nav.is-menu .nav__burger i { background: var(--cream); }
 .nav__logo { font-family: var(--display); font-size: 28px; letter-spacing: 0.03em; }
 .nav__menu { display: flex; gap: 40px; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
 .link-roll { overflow: hidden; height: 1.3em; display: inline-block; }
@@ -134,7 +142,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   color: transparent; -webkit-text-stroke: 2px rgba(255, 255, 255, 0.16); white-space: nowrap; pointer-events: none;
 }
 .hero__stage {
-  position: absolute; left: 50%; bottom: 0; height: min(92%, 860px); aspect-ratio: 488 / 685;
+  position: absolute; left: 50%; bottom: 0; width: min(38vw, calc(84svh * 0.7124), 600px); aspect-ratio: 488 / 685;
   transform: translateX(-50%); perspective: 1200px;
 }
 .hero__char, .hero__video {
@@ -162,7 +170,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hero__title {
   position: absolute; left: var(--pad); bottom: 72px; z-index: 3;
   font-family: var(--display); font-weight: 400; text-transform: uppercase;
-  font-size: clamp(64px, 6.6vw, 112px); line-height: 0.9; letter-spacing: -0.005em;
+  font-size: clamp(56px, 6vw, 104px); line-height: 0.9; letter-spacing: -0.005em;
+  text-shadow: 0 2px 30px rgba(120, 10, 0, 0.35);
 }
 .hero__side { position: absolute; right: var(--pad); bottom: 80px; width: 300px; z-index: 3; display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
 .hero__side p { font-size: 17px; line-height: 1.55; font-weight: 500; }
@@ -279,13 +288,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .nav__menu, .nav__cta { display: none; }
   .nav__burger { display: flex; }
   .hero { height: 100svh; min-height: 720px; }
-  .hero__stage { height: 56%; bottom: auto; top: 72px; }
+  .hero__stage { width: auto; height: 54%; bottom: auto; top: 72px; }
   .hero__shadow { display: none; }
   .hero__badge { width: 96px; height: 96px; top: 84px; }
   .hero__badge text { font-size: 15px; }
   .hero__badge span { font-size: 20px; }
   .hero__hint { top: 88px; font-size: 11px; }
-  .hero__title { bottom: auto; top: calc(72px + 56% - 1px); font-size: clamp(54px, 15vw, 84px); left: 20px; right: 20px; }
+  .hero__title { bottom: auto; top: calc(72px + 54% - 1px); font-size: clamp(54px, 15vw, 84px); left: 20px; right: 20px; }
   .hero__side { left: 20px; right: 20px; width: auto; bottom: 28px; gap: 16px; }
   .hero__side p { font-size: 15px; }
   .hero__side .btn { width: 100%; justify-content: center; }

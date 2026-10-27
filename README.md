@@ -7,7 +7,7 @@ Landing page de um estúdio fictício de personagens 3D, com animações interat
 ## O que tem
 
 - **Hero com personagem que segue o cursor:** inclinação 3D e parallax. No celular, segue o toque ou o giroscópio. Quando ninguém mexe, ela "respira" de um lado pro outro.
-- **Suporte a vídeo controlado pelo cursor:** coloque `public/video/hero.mp4` (personagem virando a cabeça da esquerda para a direita, fundo `#D01A04`) e o site passa a fazer o *scrub* do vídeo pela posição X do mouse automaticamente. Exporte com keyframe em todo frame para ficar liso:
+- **Suporte a vídeo controlado pelo cursor:** coloque `public/video/hero.mp4` (personagem virando a cabeça da esquerda para a direita, fundo `#D01A04`) e adicione `data-src="/video/hero.mp4"` no `<video>` do hero. O site passa a fazer o *scrub* do vídeo pela posição X do mouse. Exporte com keyframe em todo frame para ficar liso:
   ```bash
   ffmpeg -i entrada.mp4 -an -c:v libx264 -g 1 -crf 22 -preset veryfast -movflags +faststart public/video/hero.mp4
   ```

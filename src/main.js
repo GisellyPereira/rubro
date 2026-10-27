@@ -173,14 +173,13 @@ function initHero() {
   let hasVideo = false;
   let seeking = false;
 
-  // Detecta se há um vídeo do personagem disponível
-  fetch('/video/hero.mp4', { method: 'HEAD' }).then((r) => {
-    if (!r.ok || !(r.headers.get('content-type') || '').includes('video')) return;
-    video.src = '/video/hero.mp4';
+  // Vídeo do personagem (opcional): defina data-src="/video/hero.mp4" no <video>
+  if (video.dataset.src) {
+    video.src = video.dataset.src;
     video.addEventListener('loadedmetadata', () => { hasVideo = true; hero.classList.add('has-video'); }, { once: true });
     video.addEventListener('seeked', () => { seeking = false; });
     video.load();
-  }).catch(() => {});
+  }
 
   new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; }).observe(hero);
 
@@ -423,12 +422,26 @@ function initEyes() {
 }
 
 /* ------------------------------------------------------------------ */
+/* Cor do menu conforme a seção que está por baixo                    */
+/* ------------------------------------------------------------------ */
+function initNavTheme() {
+  const nav = $('.nav');
+  $$('[data-nav="dark"]').forEach((sec) => {
+    ScrollTrigger.create({
+      trigger: sec, start: 'top 44px', end: 'bottom 44px',
+      onToggle: (self) => nav.classList.toggle('nav--dark', self.isActive),
+    });
+  });
+}
+
+/* ------------------------------------------------------------------ */
 /* Menu mobile                                                        */
 /* ------------------------------------------------------------------ */
 const burger = $('.nav__burger');
 const menu = $('.mobile-menu');
 function closeMenu() {
   menu.classList.remove('is-open');
+  $('.nav').classList.remove('is-menu');
   menu.setAttribute('aria-hidden', 'true');
   burger.setAttribute('aria-expanded', 'false');
   lenis?.start();
@@ -436,6 +449,7 @@ function closeMenu() {
 burger.addEventListener('click', () => {
   const open = !menu.classList.contains('is-open');
   menu.classList.toggle('is-open', open);
+  $('.nav').classList.toggle('is-menu', open);
   menu.setAttribute('aria-hidden', String(!open));
   burger.setAttribute('aria-expanded', String(open));
   if (open) {
@@ -455,6 +469,7 @@ initMarquee();
 initReveals();
 initTilt();
 initEyes();
+initNavTheme();
 
 runLoader().then(() => {
   intro();
