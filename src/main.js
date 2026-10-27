@@ -297,8 +297,9 @@ function initHero() {
       }
       stage.style.transform = `translateX(calc(-50% + ${dx * 18}px))`;
     } else if (hasSeq) {
-      // Cursor à esquerda = ela olha pra esquerda; à direita = olha pra direita
-      drawFrame(Math.round(clamp(cur.x, 0, 1) * (total - 1)));
+      // Os quadros vão de "olhando pra direita" (0) a "olhando pra esquerda" (último),
+      // então inverte: ela sempre olha na direção do cursor
+      drawFrame(Math.round((1 - clamp(cur.x, 0, 1)) * (total - 1)));
       seq.style.transform = `rotateX(${-dy * 4}deg) translate3d(${dx * 10}px, ${dy * 6}px, 0)`;
     } else if (!reduced) {
       char.style.transform = `rotateY(${dx * 22}deg) rotateX(${-dy * 8}deg) translate3d(${dx * 26}px, ${dy * 10}px, 0)`;
