@@ -154,7 +154,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   color: transparent; -webkit-text-stroke: 2px rgba(255, 255, 255, 0.16); white-space: nowrap; pointer-events: none;
 }
 .hero__stage {
-  position: absolute; left: 50%; bottom: 0; width: min(38vw, calc(84svh * 0.7273), 600px); aspect-ratio: 480 / 660;
+  position: absolute; left: 50%; bottom: 0; width: min(38vw, calc(84svh * 0.7124), 600px); aspect-ratio: 488 / 685;
   transform: translateX(-50%); perspective: 1200px;
 }
 .hero__seq { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.3s; }

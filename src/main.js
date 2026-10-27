@@ -185,12 +185,12 @@ function initHero() {
 
   // Sequência de quadros: a personagem virando a cabeça (esquerda -> direita)
   const seq = $('[data-seq]');
-  const total = parseInt(seq.dataset.frames, 10);
+  const total = seq ? parseInt(seq.dataset.frames, 10) : 0;
   const frames = new Array(total);
   let loaded = 0;
   let hasSeq = false;
   let lastFrame = -1;
-  const sctx = seq.getContext('2d');
+  const sctx = seq ? seq.getContext('2d') : null;
   const loadFrames = () => {
     // carrega primeiro quadros espaçados (já dá pra virar) e depois preenche o resto
     const order = [];
@@ -233,7 +233,7 @@ function initHero() {
     sctx.clearRect(0, 0, seq.width, seq.height);
     sctx.drawImage(frames[j], 0, 0, seq.width, seq.height);
   };
-  if (!reduced) loadFrames();
+  if (seq && !reduced) loadFrames();
 
   new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; }).observe(hero);
 
