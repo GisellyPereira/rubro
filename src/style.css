@@ -98,6 +98,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   display: flex; align-items: center; justify-content: space-between; color: var(--white);
   transition: color 0.4s var(--ease);
 }
+.nav::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0;
+  background: rgba(20, 16, 16, 0.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  transition: opacity 0.4s var(--ease), background 0.4s var(--ease);
+}
+.nav { transition: color 0.4s var(--ease), transform 0.6s var(--ease); }
+.nav.is-scrolled::before { opacity: 1; }
+.nav.is-hidden { transform: translateY(-100%); }
+.nav--dark.is-scrolled::before { background: rgba(255, 243, 226, 0.82); }
+.nav__cta.btn--outline { color: inherit; }
+.nav__cta.btn--outline::before { background: currentColor; }
+.nav:not(.nav--dark) .nav__cta:hover { color: var(--ink); }
 .nav--dark { color: var(--ink); }
 .nav--dark .nav__burger { border-color: var(--ink); }
 .nav--dark .nav__burger i { background: var(--ink); }

@@ -426,6 +426,16 @@ function initEyes() {
 /* ------------------------------------------------------------------ */
 function initNavTheme() {
   const nav = $('.nav');
+  // Fundo translúcido depois do hero; esconde ao descer e mostra ao subir
+  ScrollTrigger.create({
+    start: 120, end: 'max',
+    onUpdate: (self) => {
+      nav.classList.toggle('is-scrolled', self.scroll() > 120);
+      const hide = self.direction === 1 && self.scroll() > innerHeight * 0.9 && !$('.mobile-menu').classList.contains('is-open');
+      nav.classList.toggle('is-hidden', hide);
+    },
+    onLeaveBack: () => { nav.classList.remove('is-scrolled', 'is-hidden'); },
+  });
   $$('[data-nav="dark"]').forEach((sec) => {
     ScrollTrigger.create({
       trigger: sec, start: 'top 44px', end: 'bottom 44px',
