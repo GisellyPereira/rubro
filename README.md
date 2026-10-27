@@ -6,11 +6,12 @@ Landing page de um estúdio fictício de personagens 3D, com animações interat
 
 ## O que tem
 
-- **Hero com personagem que segue o cursor:** inclinação 3D e parallax. No celular, segue o toque ou o giroscópio. Quando ninguém mexe, ela "respira" de um lado pro outro.
-- **Suporte a vídeo controlado pelo cursor:** coloque `public/video/hero.mp4` (personagem virando a cabeça da esquerda para a direita, fundo `#D01A04`) e adicione `data-src="/video/hero.mp4"` no `<video>` do hero. O site passa a fazer o *scrub* do vídeo pela posição X do mouse. Exporte com keyframe em todo frame para ficar liso:
-  ```bash
-  ffmpeg -i entrada.mp4 -an -c:v libx264 -g 1 -crf 22 -preset veryfast -movflags +faststart public/video/hero.mp4
-  ```
+- **Hero com personagem que vira a cabeça seguindo o cursor:** como no efeito "cursor tracking" do Framer. A posição X do mouse escolhe o quadro de uma sequência de 84 imagens (`public/img/turn/`) em que ela vira a cabeça e os olhos de um lado pro outro. No celular, segue o toque ou o giroscópio. Parada, ela olha de um lado pro outro sozinha.
+  - Como a sequência foi feita (`scripts/make_turn.py`): poses-chave geradas com IA (Nano Banana Pro) a partir da imagem original, espelhadas para o outro lado, alinhadas pelos ombros, com fundo removido e quadros intermediários criados por *optical flow*. O mesmo script gera `public/video/hero-turn.mp4` (vídeo da animação com fundo vermelho).
+  - Para trocar por um vídeo gerado por IA (ex.: Veo/Kling), coloque o MP4 em `public/video/hero.mp4` e adicione `data-src="/video/hero.mp4"` no `<video>` do hero. Exporte com keyframe em todo frame:
+    ```bash
+    ffmpeg -i entrada.mp4 -an -c:v libx264 -g 1 -crf 22 -preset veryfast -movflags +faststart public/video/hero.mp4
+    ```
 - Campo de pontos em canvas que reage ao cursor, brilho que acompanha o mouse e texto vazado em parallax
 - Preloader com contador e cortina
 - Cursor customizado com rótulo "Ver projeto" nos trabalhos
