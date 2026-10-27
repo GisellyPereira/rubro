@@ -93,7 +93,9 @@ function runLoader() {
     v: 100, duration: reduced ? 0.2 : 1.6, ease: 'power2.inOut',
     onUpdate: () => { count.textContent = Math.round(state.v); bar.style.transform = `scaleX(${state.v / 100})`; },
   });
-  return Promise.all([imgReady, fontsReady, new Promise((r) => tl.eventCallback('onComplete', r))]);
+  // Nunca segura o usuário mais que ~3s esperando fonte/imagem
+  const assets = Promise.race([Promise.all([imgReady, fontsReady]), new Promise((r) => setTimeout(r, 3000))]);
+  return Promise.all([assets, new Promise((r) => tl.eventCallback('onComplete', r))]);
 }
 
 function intro() {
