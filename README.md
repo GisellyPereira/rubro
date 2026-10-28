@@ -1,38 +1,89 @@
-# Rubro Studio
+<div align="center">
 
-Landing page de um estúdio fictício de personagens 3D, com animações interativas.
+# RUBRO®
 
-**Site no ar:** https://rubro-studio.netlify.app
+### Personagens que olham de volta.
 
-## O que tem
+Landing page de um estúdio fictício de mascotes e personagens 3D. Quase tudo na página reage a quem está olhando.
 
-- **Hero com personagem que vira a cabeça seguindo o cursor:** como no efeito "cursor tracking" do Framer. A posição X do mouse escolhe o quadro de uma sequência de 84 imagens (`public/img/turn/`) em que ela vira a cabeça e os olhos de um lado pro outro. No celular, segue o toque ou o giroscópio. Parada, ela olha de um lado pro outro sozinha.
-  - Como a sequência foi feita (`scripts/make_turn.py`): poses-chave geradas com IA (Nano Banana Pro) a partir da imagem original, espelhadas para o outro lado, alinhadas pelos ombros, com fundo removido e quadros intermediários criados por *optical flow*. O mesmo script gera `public/video/hero-turn.mp4` (vídeo da animação com fundo vermelho).
-  - Para trocar por um vídeo gerado por IA (ex.: Veo/Kling), coloque o MP4 em `public/video/hero.mp4` e adicione `data-src="/video/hero.mp4"` no `<video>` do hero. Exporte com keyframe em todo frame:
-    ```bash
-    ffmpeg -i entrada.mp4 -an -c:v libx264 -g 1 -crf 22 -preset veryfast -movflags +faststart public/video/hero.mp4
-    ```
-- Campo de pontos em canvas que reage ao cursor, brilho que acompanha o mouse e texto vazado em parallax
-- Preloader com contador e cortina
-- Cursor customizado com rótulo "Ver projeto" nos trabalhos
-- Botões magnéticos e links com efeito de rolagem
-- Faixa (marquee) com velocidade e direção ligadas ao scroll
-- Títulos revelados por linha, texto que "acende" palavra por palavra
-- Cards de serviço com inclinação 3D e brilho
+**[rubro-studio.netlify.app](https://rubro-studio.netlify.app)**
+
+![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
+![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-88CE02?logo=greensock&logoColor=black)
+![Lenis](https://img.shields.io/badge/Lenis-smooth%20scroll-111111)
+![JavaScript](https://img.shields.io/badge/JavaScript-vanilla-F7DF1E?logo=javascript&logoColor=black)
+![Netlify](https://img.shields.io/badge/deploy-Netlify-00C7B7?logo=netlify&logoColor=white)
+
+![Hero do Rubro: personagem 3D sobre fundo vermelho](docs/hero.jpg)
+
+</div>
+
+---
+
+## A ideia
+
+Um estúdio que cria mascotes precisa de um site que pareça vivo. Então a personagem do hero se inclina na direção do cursor, os olhinhos do final seguem o mouse e piscam, e os cards se mexem quando o cursor passa por cima. No celular, o movimento vem do toque ou da inclinação do aparelho.
+
+## O que acontece na página
+
+**🖱️ Interações com o cursor**
+- Personagem do hero com inclinação 3D e parallax, seguindo o mouse, o toque ou o giroscópio do celular
+- Campo de pontos em canvas no fundo do hero, que se afasta do cursor
+- Brilho que acompanha o mouse e a palavra "RUBRO" vazada em parallax
+- Cursor customizado com o rótulo "Ver projeto" sobre os trabalhos
+- Botões magnéticos que puxam o cursor
+- Olhinhos do CTA que seguem o ponteiro e piscam sozinhos
+
+**📜 Animações no scroll**
+- Preloader com contador e cortina de abertura
+- Títulos revelados linha por linha e texto que acende palavra por palavra
+- Faixa (marquee) cuja velocidade e direção acompanham o scroll
+- Cards de serviço com inclinação 3D e reflexo de luz
 - Parallax nas imagens dos trabalhos
-- Linha do processo desenhada pelo scroll e contadores animados
-- Olhinhos do CTA que seguem o cursor e piscam
-- Scroll suave (Lenis) e respeito a `prefers-reduced-motion`
+- Linha do processo desenhada pela rolagem e números que contam até o valor final
 
-## Stack
+![Serviços](docs/servicos.jpg)
 
-Vite, GSAP (ScrollTrigger) e Lenis. Imagens dos personagens geradas com IA e o fundo do personagem principal removido por `scripts/cutout.py`.
+<table>
+  <tr>
+    <td><img src="docs/trabalhos.jpg" alt="Trabalhos: Pimenta Café e Nuvem Bank" /></td>
+    <td><img src="docs/prova.jpg" alt="Números e depoimento" /></td>
+  </tr>
+</table>
+
+![Chamada final com os olhinhos que seguem o cursor](docs/cta.jpg)
+
+### No celular
+
+![Versão para celular](docs/mobile.jpg)
+
+## Por dentro
+
+- **Sem framework:** HTML, CSS e JavaScript puro, empacotados pelo Vite.
+- **GSAP + ScrollTrigger** cuidam das revelações, do parallax, da linha do processo e dos contadores. O **Lenis** deixa a rolagem suave.
+- **Um único estado do ponteiro** (mouse, toque ou giroscópio) alimenta o hero, o campo de pontos, o brilho e os olhinhos. Assim tudo responde ao mesmo gesto.
+- **Personagens gerados com IA.** O fundo da personagem principal foi removido com `scripts/cutout.py`, um recorte por chroma key em Python.
+- **Acessibilidade:** respeita `prefers-reduced-motion`, tem foco visível no teclado e desliga o cursor customizado em telas de toque.
+
+```
+├── index.html          # todas as seções
+├── src/
+│   ├── main.js         # preloader, cursor, hero, campo de pontos, scroll, olhinhos
+│   └── style.css
+├── public/img/         # personagens e ilustrações
+├── scripts/            # recorte do fundo (cutout.py) e utilitários de imagem
+└── docs/               # imagens deste README
+```
 
 ## Rodar localmente
 
 ```bash
 npm install
-npm run dev
+npm run dev       # desenvolvimento
+npm run build     # produção em dist/
 ```
 
-Build de produção: `npm run build` (gera `dist/`). O deploy na Netlify usa o `netlify.toml`.
+## Créditos
+
+Design, desenvolvimento e animações: **Giselly Pereira**.<br/>
+Personagens e imagens gerados com IA. O Rubro, os clientes e os números são fictícios.
